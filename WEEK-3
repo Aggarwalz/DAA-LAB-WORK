@@ -1,0 +1,33 @@
+#include<stdio.h>
+void main()
+{
+    int a[30],n,i,j,s;
+    int sum=0;
+    printf("Enter limit:");
+    scanf("%d",&n);
+    printf("Enter s:");
+    scanf("%d",&s);
+    printf("Enter array:");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        sum=a[i];
+        for(j=i+1;j<n;j++)
+        {
+            if(sum==s)
+            {
+                printf("Sum found between index:%d and %d",i,j);
+                break;
+            }
+            else
+            {
+                sum=sum+a[j];
+                if(sum>s)
+                break;
+            }
+        }
+    }
+}
