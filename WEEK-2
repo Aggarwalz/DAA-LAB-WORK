@@ -1,40 +1,54 @@
+Q-1:
 #include<stdio.h>
 void main()
 {
-    int a[20],i,n,k,c=0;
-    printf("Enter size:");
-    scanf("%d",&n);
-    printf("Enter elements:");
-    for(i=0;i<n;i++)
+    int i,j,n,a[20],t;
+    int k=0,c=0;
+    printf("Enter no. of test cases:");
+    scanf("%d",&t);
+    for(j=0;j<t;j++)
     {
+     printf("Enter size:");
+     scanf("%d",&n);
+     printf("Enter elements:");
+     for(i=0;i<n;i++)
+     {
         scanf("%d",&a[i]);
-    }
-    printf("Enter the key:");
-    scanf("%d",&k);
-    for(i=0;i<n;i++)
-    {
+     }
+     printf("Enter the key:");
+     scanf("%d",&k);
+     for(i=0;i<n;i++)
+     {
         if(a[i]==k)
             c++;
-    }
-    if(c!=0)
-    {
+     }
+     if(c!=0)
+     {
         printf("Key found\n");
         printf("Number of %d = %d",k,c);
-    }
-    else
-    {
+     }
+     else
+     {
         printf("Key not found");
+     }
     }
 }
 
 INPUT:
-Enter size:10
-Enter elements:1 7 4 9 2 7 5 9 7 8
-Enter the key:7
+Enter no. of test cases:2
+Enter size:6
+Enter elements:5 7 5 8 9 11 13
+Enter key:5
+
+Enter size:7
+Enter elements:63 14 97 83 52 80 48
+Enter key:25
 
 OUTPUT:
 Key found
-Number of 7 = 3
+Number of 5=2
+
+Key not found
 
 Q-2:
 #include<iostream>
