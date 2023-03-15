@@ -1,5 +1,5 @@
 Q-1:
-#include <stdio.h>
+   #include <stdio.h>
    #include <stdlib.h>
    #include <time.h>            
    int main()
@@ -59,4 +59,118 @@ Q-1:
  21 32 34 46 51 54 65 76 78 97
  
  Q-2:
+ #include<iostream>
+using namespace std;
+int main()
+{
+
+    int n,arr[20];
+    int i, j,t,k, temp;
+    int comp = 0;
+    int swaps = 0;
+    cout<<"Enter no. of test cases:";
+    cin>>t;
+    for(k=0;k<t;k++)
+    {
+      cout<<"Enter size:";
+      cin>>n;
+      cout<<"Enter elements:";
+      for (i = 0; i < n; i++)
+      {
+        cout << arr[i] << " ";
+      }
+      cout << "\n";
+      for (i = 0; i < n; i++)
+      {
+        for (j = i + 1; j < n; j++)
+        {
+            comp = comp + 1;
+            if (arr[i] > arr[j])
+            {
+                swaps = swaps + 1;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+      }
+     cout << "\nComparisons: " << comp;
+     cout << "\nSwap: " << swaps;
+     for (i = 0; i < n; i++)
+     {
+        cout << arr[i] << " ";
+     }
+    }
+}
+
+INPUT:
+Enter no. of test cases:2
+Enter limit:8
+Enter elements:-13 63 -21 76 46 89 45 12
+Enter limit:10
+Enter elements:54 65 34 76 78 97 46 32 51 21
+
+OUTPUT:
+Comparisons:28
+Swaps:7
+-21 -13 12 45 46 65 75 89
+ comparisons:45
+ Swaps:9
+ 21 32 34 46 51 54 65 76 78 97
+ 
+ Q-3:
+ #include<iostream>
+using namespace std;
+int main()
+{
+
+    int n,arr[20];
+    int i, j,t,k, temp;
+    int comp = 0;
+    int swaps = 0;
+    cout<<"Enter no. of test cases:";
+    cin>>t;
+    for(k=0;k<t;k++)
+    {
+      cout<<"Enter size:";
+      cin>>n;
+      cout<<"Enter elements:";
+      for (i = 0; i < n; i++)
+      {
+        cout << arr[i] << " ";
+      }
+      cout << "\n";
+      for (i = 0; i < n; i++)
+      {
+        for (j = i + 1; j < n; j++)
+        {
+            comp = comp + 1;
+            if (arr[i] > arr[j])
+            {
+                swaps = swaps + 1;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+      }
+     cout << "\nComparisons: " << comp;
+     cout << "\nSwap: " << swaps;
+     for (i = 0; i < n; i++)
+     {
+        cout << arr[i] << " ";
+     }
+    }
+}
+
+INPUT:
+Enter no. of test cases:2
+Enter size:5
+Enter elements:13 17 11 4 20
+Enter size:6
+Enter elements:11 24 19 23 13 24
+
+OUTPUT:
+YES
+NO
  
