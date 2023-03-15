@@ -1,1 +1,62 @@
-
+Q-1:
+#include <stdio.h>
+   #include <stdlib.h>
+   #include <time.h>            
+   int main()
+   {
+      int array[20];
+      int i, j, n, temp,no_swap=0,comp=0;
+      int t,k;
+      printf("Enter no of test cases:");
+      scanf("%d",&t);
+      for(k=0;k<t;k++)
+      {
+          printf("Enter size:");
+      scanf("%d",&n);
+      printf("Enter elements:");
+      for (i = 0; i < n; i++)
+      {
+          scanf("%d",&array[i]);
+      }
+      for (i = 1; i < n; i++) 
+      {
+       j = i;
+       comp++;
+       while ((j > 0) && (array[j - 1] > array[j]))
+        {
+            if(array[j-1]>array[j]){
+            comp++;
+        }
+        temp = array[j - 1];
+        array[j - 1] = array[j];
+        array[j] = temp;
+        j--;
+        no_swap++;
+      }
+}
+      printf("\nswaps = %d",no_swap);
+      printf("\ncomparisions  = %d",comp);
+      for (i = 0; i < n; i++)
+          printf("%d \n", array[i]);
+      }
+      return 0;
+ } 
+ 
+ INPUT:
+ Enter no of test cases:2
+ Enter size: 8
+ Enter elements:-23 65 -31 76 46 89 45 32
+ Enter size:10
+ Enter elements:54 65 34 76  78 97 46 32 51 21
+ 
+ OUTPUT:
+ swaps=20
+ comparisons=13
+ -31 -23 32 45 46 65 76 89
+ 
+ swaps=37
+ comparisons=28
+ 21 32 34 46 51 54 65 76 78 97
+ 
+ Q-2:
+ 
