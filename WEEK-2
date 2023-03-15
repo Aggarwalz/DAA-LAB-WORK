@@ -76,56 +76,75 @@ void getTriplet(int arr[], int n)
 }
 int main()
 {
-    int arr[20],n,i;
-    cout<<"Enter size:";
-    cin>>n;
-    cout<<"Enter elements:";
-    for(i=0;i<n;i++)
+    int arr[20],n,i,t;
+    cout<<"Enter no. of test cases:";
+    cin>>t;
+    for(int l=0;l<t;l++)
     {
-        cin>>arr[i];
+        cout<<"Enter size:";
+        cin>>n;
+        cout<<"Enter elements:";
+        for(i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+        getTriplet(arr,n);
     }
-    getTriplet(arr,n);
 }
 
 INPUT:
-Enter size: 5
-Enter elements: 4 5 7 7 8
+Enter no. of test cases:2
+Enter size:5
+Enter elements:4 5 7 11 8
+Enter size:5
+Enter elements:11 19 24 35 25
+
 OUTPUT:
 No suck triplet exists
+The numbers are = 11 24 35
 
 Q-3:
 #include<stdio.h>
 void main()
 {
-    int a[20],n,i,j,k;
-    printf("Enter limit:");
-    scanf("%d",&n);
-    for(i=0;i<n;i++)
-    scanf("%d",&a[i]);
-    printf("Enter key:");
-    scanf("%d",&k);
-    int t=0;
-    for(i=0;i<n;i++)
+    int a[20],n,i,j,k,l,tc;
+    printf("Enter no. of test cases:");
+    scanf("%d",&tc);
+    for(l=0;l<tc;l++)
     {
+     printf("Enter limit:");
+     scanf("%d",&n);
+     for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+     printf("Enter key:");
+     scanf("%d",&k);
+     int t=0;
+     for(i=0;i<n;i++)
+     {
         for(j=i+1;j<n;j++)
-        {
-            if((a[i]-a[j]==k))||(a[j]-a[i]==k))
+         {
+            if((a[i]-a[j]==k)||(a[j]-a[i]==k))
             t++;
-        }
-    }
-    if(t!=0)
-    {
+         }
+     }
+     if(t!=0)
+     {
         printf("Pair exists");
         printf("Number of pairs= %d",t);
+     }
+     else
+     printf("No pair exists");
     }
-    else
-    printf("No pair exists");
 }
 
 INPUT:
+Enter no. of test cases:2
 Enter limit:5
 Enter elements: 7 4 3 5 1
+Enter limit:6
+Enter elements:11 43 23 19 24 25
 
 OUTPUT:
 Pair exists
 Number of pairs= 1
+No pair exists
