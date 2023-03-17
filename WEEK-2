@@ -63,7 +63,7 @@ void getTriplet(int arr[], int n)
         {
            if(arr[i]+arr[j]==arr[k])
            {
-               cout<<"The numbers are= "<<arr[i]<<" "<<arr[j]<<" "<<arr[k]<<endl;
+               cout<<"The indices are= "<<i<<" "<<j<<" "<<k<<endl;
                return;
            }
            else if(arr[i]+arr[j]<arr[k])
@@ -100,8 +100,8 @@ Enter size:5
 Enter elements:11 19 24 35 25
 
 OUTPUT:
-No suck triplet exists
-The numbers are = 11 24 35
+No such triplet exists
+The indices are = 0 4 3
 
 Q-3:
 #include<stdio.h>
