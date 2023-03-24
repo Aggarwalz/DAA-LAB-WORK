@@ -1,69 +1,95 @@
 Q-1:
-#include <stdio.h>
-void merge(int arr[], int p, int q, int r) 
+#include<stdio.h>
+void merge(int [],int,int,int,int*,int*);
+void merge_sort(int [],int,int,int,int*,int*);
+void disp(int [],int);
+int main()
 {
-  int n1 = q - p + 1;
-  int n2 = r - q;
-  int L[n1], M[n2];
-  for (int i = 0; i < n1; i++)
-    L[i] = arr[p + i];
-  for (int j = 0; j < n2; j++)
-    M[j] = arr[q + 1 + j];
-  int i, j, k;
-  i = 0;
-  j = 0;
-  k = p;
-  while (i < n1 && j < n2) 
-  {
-    if (L[i] <= M[j]) 
+    int t,n,i;
+    printf("Enter the number of test cases:");
+    scanf("%d",&t);
+    while(t>0)
     {
-      arr[k] = L[i];
-      i++;
-    } else 
-    {
-      arr[k] = M[j];
-      j++;
+        t--;
+        printf("Enter size:");
+        scanf("%d",&n);
+        int arr[n],inv=0,cmp=0;
+        printf("Enter elements:");
+        for(i=0;i<n;i++)
+        scanf("%d",&arr[i]);
+        merge_sort(arr,0,n-1,&cmp,&inv);
+        printf("Comparisons:%d\n",cmp);
+        printf("Inversions:%d\n",inv);
+        printf("Sorted Array:");
+        disp(arr,n);
     }
-    k++;
-  }
-  while (i < n1)
-  {
-    arr[k] = L[i];
-    i++;
-    k++;
-  }
-  while (j < n2) 
-  {
-    arr[k] = M[j];
-    j++;
-    k++;
-  }
+    return 0;
 }
-void mergeSort(int arr[], int l, int r) 
+void merge(int arr[],int l,int m,int h,int *cmp,int *inv)
 {
-  if (l < r) 
-  {
-    int m = l + (r - l) / 2;
-    mergeSort(arr, l, m);
-    mergeSort(arr, m + 1, r);
-    merge(arr, l, m, r);
-  }
+    int l1,l2,i;
+    int b[h];
+    for(l1=l,l2=m+1;i=l;l1<=m && l2<=h;i++)
+    {
+        (*cmp)++;
+        if(arr[l1]<=arr[l2])
+        b[i]=arr[l1++];
+        else
+        {
+            b[i]=arr[l2++];
+            (*inv)+=(m-l1+1);
+        }
+    }
+    while(l1<=m)
+    {
+        b[i++]=arr[l1++];
+    }
+    while(l2<=h)
+    {
+        b[i++]=arr[l2++];
+    }
+    for(i=1;i<=h;i++)
+    {
+        arr[i]=b[i];
+    }
 }
-void printArray(int arr[], int size) 
+void merge_sort(int arr[],int l,int h,int *cmp,int *inv)
 {
-  for (int i = 0; i < size; i++)
-    printf("%d ", arr[i]);
-  printf("\n");
+    if(l<=h)
+    {
+        int m=(l+h)/2;
+        merge_sort(arr,l,m,cmp,inv);
+        merge_sort(arr,m+1,h,cmp,inv);
+        merge(arr,l,m,h,cmp,inv);
+    }
 }
-int main() 
+void disp(int arr[],int n)
 {
-  int size,arr[20];
-  printf("Enter limit:");
-  scanf("%d",&size);
-  printf("Enter elements:");
-  for(int i=0;i<size;i++)
-  scanf("%d",&arr[i]);
-  mergeSort(arr, 0, size - 1);
-  printf("Sorted array: \n");
-  printArray(arr, size);
+    int i;
+    for(i=0;i<n;i++)
+    printf("%d",arr[i]);
+    printf("\n");
 }
+
+INPUT:
+Enter total number of test cases:3
+Enter size:8
+Enter elements:23 65 21 76 46 89 45 32
+Enter size:10
+Enter elements:54 65 34 76 78 97 46 32 51 21
+Enter size:15
+Enter elements:63 42 223 645 652 31 324 22 553 12 54 65 86 46 325
+
+OUTPUT:
+Comparisons:16
+Inversions:13
+Array after sorting:21 23 32 45 46 65 76 89
+Comparisons:22
+Inversions:28
+Array after sorting:21 32 34 46 51 54 65 76 78 97
+Comparisons:43
+Inversions:54
+Array after sorting:12 22 31 42 46 54 63 65 86 223 324 325 553 645 652
+
+Q-2:
+
