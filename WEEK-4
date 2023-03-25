@@ -246,7 +246,13 @@ void Qsort(int arr[],int low,int high)
 
 INPUT:
 Enter number of test cases:2
-Enter size:10
-Enter elements:123 656 54 765 344 514 765 34 765 234
+Enter size:8
+Enter elements:123 656 54 765 344 514 765 34
 Enter the Kth term:3
-Enter size:
+Enter size:10
+Enter elements:43 64 13 78 864 346 786 456 21 19
+Enter the Kth term:8
+
+OUTPUT:
+The 3 smallest Element is:123
+The 8 smallest element is:78
