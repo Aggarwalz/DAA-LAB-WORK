@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n,t;
+    cout<<"Enter number of test cases:";
+    cin>>t;
+    for(int j=0;j<t;j++)
+    {
+     cout<<"Enter the length:";
+     cin>>n;
+     char a[n];
+     cout<<"Enter the characters:";
+     for(int k=0;k<n;k++)
+     {
+         cin>>a[k];
+     }
+     int freq[256]={0};
+     for(int i=0;i<n;i++)
+     {
+        freq[a[i]]++;
+     }
+     char max_char=a[0];
+     int max_freq=freq[a[0]];
+     for(int i=0;i<n;i++)
+     {
+        if(freq[a[i]]>max_freq)
+        {
+            max_char=a[i];
+            max_freq=freq[a[i]];
+        }
+     }
+     cout<<"Char with max freq is"<<max_char<<"with frequency"<<max_freq<<endl;
+    }
+    return 0;
+}
+
+INPUT:
+Enter number of test cases:2
+Enter the length:10;
+Enter the characters:a e d w a d q a f p
+Enter the length:15
+Enter the characters:r k g v y u m q a d j c z r
+
+OUTPUT:
+Char with max freq is a with frequency 3
+Char with max freq is r with frequency 2
+
+
+Q-2:
+
+
