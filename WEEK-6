@@ -1,0 +1,138 @@
+Q-1:
+#include<bits/stdc++.h>
+using namespace std;
+const int N=6;
+vector<int>graph[N];
+vector<bool>visited(N);
+bool dfs(int source,int dest)
+{
+    if(source==dest)
+    return true;
+    visited[source]=true;
+    for(auto child:graph[source])
+    {
+        if(!visited[source])
+        {
+            visited[child]=true;
+            bool ans=dfs(child,dest);
+            if(ans)
+            return ans;
+        }
+    }
+    return false;
+}
+int main()
+{
+    int m;
+    cin>>m;
+    for(int i=0;i<m;i++)
+    {
+        int v1,v2;
+        cin>>v1>>v2;
+        graph[v1].push_back(v2);
+        graph[v2].push_back(v1);
+    }
+    for(int i=1;i<=5;i++)
+    {
+        cout<<i<<"-";
+        for(auto x:graph[i])
+        cout<<x<<"";
+    }
+    cout<<endl;
+    int source,dest;
+    cin>>source>>dest;
+    if(dfs(source,dest))
+    cout<<"Yes path exists";
+    else
+    cout<<"No path exists";
+}
+
+INPUT:
+6
+1 5
+2 3
+2 4
+3 1
+5 2
+4 5
+
+1 5
+
+OUTPUT:
+1->5 3
+2->3 4 5
+3->2 1
+4->2 5
+5->1 2 4
+Yes path exists
+
+Q-2:
+#include<bits/stdc++.h>
+using namespace std;
+bool bfs(vector<int> g[],int color[],int src)
+{
+    queue<int>q;
+    q.push(src);
+    color[src]=1;
+    while(!q.empty())
+    {
+        auto node=q.front();
+        q.pop();
+        for(auto it:g[node])
+        {
+            if(color[it]==-1)
+            {
+                color[it]=1-color[node];
+                q.push(it);
+            }
+            else if(color[it]==color[node])
+            return false;
+        }
+    }
+    return true;
+}
+bool isBipartite(vector<int> g[],int n)
+{
+    int color[n];
+    memset(color,-1,sizeof(color));
+    for(int i=0;i<n;i++)
+    {
+        if(color[i]==-1)
+        {
+            if(!bfs(g,color,i))
+            return false;
+        }
+    }
+        return true;
+}
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    vector<int>g[n];
+    for(int i=0;i<m;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
+    if(isBipartite(g,n))
+    cout<<"Yes Bipartite";
+    else
+    cout<<"Not Bipartite";
+}
+
+INPUT:
+6 6
+0 1
+1 2
+2 3
+3 4
+4 6
+4 5
+
+OUTPUT:
+Yes Bipartite
+
+Q-3:
