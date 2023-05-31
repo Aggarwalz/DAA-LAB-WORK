@@ -1,0 +1,131 @@
+Q-1:
+//Matrix Multiplication
+#include<bits/stdc++.h>
+using namespace std;
+void matrixChainOrder(int p[], int n)
+{
+    int m[n][n];
+    for (int i=1; i<n; i++)
+        m[i][i] = 0;
+    for (int L=2; L<n; L++)
+    {
+        for (int i=1; i<n-L+1; i++)
+        {
+            int j = i+L-1;
+            m[i][j] = INT_MAX;
+            for (int k=i; k<=j-1; k++)
+            {
+                int q = m[i][k] + m[k+1][j] + p[i-1]*p[k]*p[j];
+                if (q < m[i][j])
+                {
+                    m[i][j] = q;
+                    m[j][i] = k;
+                }
+            }
+        }
+    }
+    cout << "\nOptimal Solution is is : " << m[1][n-1];
+}
+int main()
+{
+    int arr[10],n;
+    cout<<"Enter limit: ";
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    matrixChainOrder(arr, n);
+    return 0;
+}
+
+INPUT:
+Enter limit: 5
+40 20 30 10 30
+
+OUTPUT:
+The optimal solution is: 26000
+
+O-2:
+//Coin sum problem
+#include <bits/stdc++.h>
+using namespace std;
+int count(int coins[], int n, int sum)
+{
+    if (sum == 0)
+        return 1;
+    if (n <= 0)
+        return 0;
+    return count(coins, n - 1, sum)
+           + count(coins, n, sum - coins[n - 1]);
+}
+int main()
+{
+    int i, j,n;
+    int coins[7],sum;
+    cout<<"Enter the no. of coins: ";
+    cin>>n;
+    cout<<"Enter coins: ";
+    for(int i=0;i<n;i++);
+    {
+        cin>>coins[i];
+    }
+    cout<<"Enter the sum of coins: ";
+    cin>>sum;
+    cout << " " << count(coins, n, sum);
+    return 0;
+}
+
+INPUT:
+Enter the no. of coins: 4
+Enter the coins: 2 5 6 3
+Enter the sum of coins: 10
+
+OUTPUT:
+5
+
+Q-3:
+#include <bits/stdc++.h>
+using namespace std;
+bool isSubsetSum(int arr[], int n, int sum)
+{
+    if (sum == 0)
+        return true;
+    if (n == 0 && sum != 0)
+        return false;
+    if (arr[n - 1] > sum)
+        return isSubsetSum(arr, n - 1, sum);
+    return isSubsetSum(arr, n - 1, sum)
+           || isSubsetSum(arr, n - 1, sum - arr[n - 1]);
+}
+bool findPartiion(int arr[], int n)
+{
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += arr[i];
+    if (sum % 2 != 0)
+        return false;
+    return isSubsetSum(arr, n, sum / 2);
+}
+int main()
+{
+    int arr[10],n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    if (findPartiion(arr, n) == true)
+        cout << "Yes it can be divided into two subsets of equal sum";
+    else
+        cout << "No it cannot be divided into two subsets of equal sum";
+    return 0;
+}
+
+INPUT:
+7
+1 5 4 11 5 14 10
+
+OUTPUT:
+Yes it can be divided into two subsets of equal sum
+
