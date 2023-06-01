@@ -1,0 +1,114 @@
+Q-1:
+#include <stdio.h>
+#include <string.h>
+int max(int a, int b) 
+{ 
+    return (a > b) ? a : b; 
+}
+int lcs(char* X, char* Y, int m, int n)
+{
+    if (m == 0 || n == 0)
+        return 0;
+    if (X[m - 1] == Y[n - 1])
+        return 1 + lcs(X, Y, m - 1, n - 1);
+    else
+        return max(lcs(X, Y, m, n - 1),
+                   lcs(X, Y, m - 1, n));
+}
+int main()
+{
+    int n,m;
+    char X[10];
+    char Y[12];
+    printf("Sequence1: ");
+    for(int i=0;i<n;i++)
+    {
+        getchar();
+        scanf("%c",&X[i]);
+    }
+    printf("Sequence2: ");
+    for(int i=0;i<m;i++)
+    {
+        getchar();
+        scanf("%c",&Y[i]);
+    }
+    int length = lcs(X, Y, m, n);
+    printf("Length of LCS: %d\n", length);
+    return 0;
+}
+
+Q-2:
+#include <bits/stdc++.h>
+using namespace std;
+int max(int a, int b) 
+{
+    return (a > b) ? a : b; 
+}
+int knapSack(int W, int wt[], int val[], int n)
+{
+    int i, w;
+    vector<vector<int> > K(n + 1, vector<int>(W + 1));
+    for (i = 0; i <= n; i++) 
+    {
+        for (w = 0; w <= W; w++) 
+        {
+            if (i == 0 || w == 0)
+                K[i][w] = 0;
+            else if (wt[i - 1] <= w)
+                K[i][w] = max(val[i - 1]
+                                  + K[i - 1][w - wt[i - 1]],
+                              K[i - 1][w]);
+            else
+                K[i][w] = K[i - 1][w];
+        }
+    }
+    return K[n][W];
+}
+int main()
+{
+    int n,W;
+    int pf[7],wt[7];
+    cin>>n;
+    cout<<"Enter the weights: ";
+    for(int i=0;i<n;i++)
+    {
+        cin>>wt[i];
+    }
+    cout<<"Enter the profits: ";
+    for(int i=0;i<n;i++)
+    {
+        cin>>pf[i];
+    }
+    cout<<"Enter the max capacity: ";
+    cin>>W;
+    cout << "Value is: "<<knapSack(W, wt, pf, n);
+    return 0;
+}
+
+Q-3:
+//PERMUTATION
+#include <bits/stdc++.h>
+using namespace std;
+void permute(string& a, int l, int r)
+{
+    if (l == r)
+        cout << a << endl;
+    else 
+    {
+        for (int i = l; i <=r; i++) 
+        {
+            swap(a[l], a[i]);
+            permute(a, l + 1, r);
+            swap(a[l], a[i]);
+        }
+    }
+}
+int main()
+{
+    string str;
+    cout<<"Enter the string: ";
+    cin>>str;
+    int n = str.size();
+    permute(str, 0, n - 1);
+    return 0;
+}
